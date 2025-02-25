@@ -1,0 +1,6 @@
+# venv
+venv/
+
+# config
+emojis.yaml
+secrets.yaml
