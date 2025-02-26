@@ -1,5 +1,6 @@
 # cache
 __pycache__/
+.DS_STORE
 
 # venv
 venv/
