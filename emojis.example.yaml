@@ -1,2 +1,17 @@
 ---
-# TODO: figure out how to structure this
+#
+# emojis.yaml should be formatted similarly to the following:
+#
+# a:
+#   - <emoji literal>
+#   - <emoji literal>
+#   - <emoji literal>
+#   ...
+# b:
+#   - <emoji literal>
+#   - <emoji literal>
+#   - <emoji literal>
+#   ...
+# ...
+#
+# Refer to setup/README.md for more information.
