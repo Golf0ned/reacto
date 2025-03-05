@@ -16,11 +16,16 @@ class ReactionModal(discord.ui.Modal):
         super().__init__(title="Add Reaction")
         self.message = message
 
-        self.add_item(discord.ui.InputText(label="Reaction (A-Z 0-9)", ))
+        self.add_item(discord.ui.InputText(label="Reaction (A-Z, 0-9, no spaces)", ))
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.defer()
         input = self.children[0].value.lower()
+
+        # Ignore if message has already been reacted to
+        if self.message.reactions:
+            await interaction.followup.send("Message has already been reacted to.", ephemeral=True)
+            return
 
         # Check if input is valid
         if not input or not input.isalnum():
