@@ -17,7 +17,7 @@ class ReactionModal(discord.ui.Modal):
         self.message = message
 
         self.add_item(discord.ui.InputText(
-            label="Reaction (A-Z, 0-9, no spaces)",
+            label="Text (A-Z, 0-9, !?, space)",
             min_length=1,
             max_length=20,
         ))
@@ -32,7 +32,7 @@ class ReactionModal(discord.ui.Modal):
             return
 
         # Check if input is valid
-        if not input or not input.isalnum():
+        if not input or not all(c.isalnum() or c in "!? " for c in input):
             await interaction.followup.send("Invalid input. Please provide an alphanumeric string with no spaces.", ephemeral=True)
             return
 
