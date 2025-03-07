@@ -1,5 +1,5 @@
-basics of this dir is that the uploader takes over your mouse with hardcoded values for x and y positions of where the upload button and renaming files are for the bot emoji upload on the discord dev page
+basics of this dir is that we poll for where the positions of mouse should be for uploader on the bot page by hovering over upload button and then over the renaming for the file then make sure the upload button folder navs to the assets of this repo rest will be taken care of by script when run
 
-I should honestly figure out how to like have it go through a setup portion to mark the values before beginning but for now to recreate just run the poll position function which prints the mouse position to find where you want the mouse to move to and then run the file
 
-Once done the parser expects the html for each of the pages of all emojis, ie just go and hit copy html for each page and paste them into html/p1.html then it will parse them for key value pairs and dumps them into the yaml file.
+once uploading is all done 
+for parser have inspect element open and find the div that highlights the table of emoji, uploaded by, emoji id take note of that. now scroll to the bottom of the page and start the parser script. it will prompt you to be hover over the position on the screen of the div you found earlier then the next button mark those two the rest the bot will take care of 
