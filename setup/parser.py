@@ -66,7 +66,7 @@ def parse_and_save():
 
     special_key_map = {
         "space": " ",
-        "explanation": "!",
+        "exclamation": "!",
         "question": "?"
     }
 
