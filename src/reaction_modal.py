@@ -16,7 +16,11 @@ class ReactionModal(discord.ui.Modal):
         super().__init__(title="Add Reaction")
         self.message = message
 
-        self.add_item(discord.ui.InputText(label="Reaction (A-Z, 0-9, no spaces)", ))
+        self.add_item(discord.ui.InputText(
+            label="Reaction (A-Z, 0-9, no spaces)",
+            min_length=1,
+            max_length=20,
+        ))
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.defer()
