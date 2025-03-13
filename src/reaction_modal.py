@@ -1,5 +1,7 @@
-from collections import Counter
+from collections import Counter, deque
 
+from discord.types import message
+import yaml
 import discord
 
 from config import Config
@@ -8,6 +10,25 @@ from config import Config
 EMOJIS = Config.emojis
 
 EMOJI_COUNTS = { c: len(EMOJIS[c]) for c in EMOJIS }
+
+MESSAGE_QUEUE_FILE = 'messages.yaml'
+
+def store_interaction(interaction: discord.Interaction):
+    try: 
+        with open(MESSAGE_QUEUE_FILE, 'r') as file:
+            data = yaml.safe_load(file) or []
+            message_queue = deque(data, maxlen=100)
+    except FileNotFoundError:
+        message_queue = deque(maxlen=100)
+
+    if not interaction.message:
+        print("no interaction message somehow lol")
+        return
+
+    message_queue.append({str(interaction.message.id): interaction.user.global_name})
+
+    with open(MESSAGE_QUEUE_FILE, 'w') as file:
+        yaml.dump(list(message_queue), file)
 
 
 class ReactionModal(discord.ui.Modal):
@@ -48,3 +69,8 @@ class ReactionModal(discord.ui.Modal):
         for c in input:
             await self.message.add_reaction(EMOJIS[c][cur_count.get(c, 0)])
             cur_count[c] = cur_count.get(c, 0) + 1
+
+        # store who reacted to the message  
+        store_interaction(interaction)
+        await interaction.followup.send("Reactions added and interaction stored", ephemeral=True)
+
