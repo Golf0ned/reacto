@@ -1,5 +1,3 @@
-# reacto
-
 <div align="center">
 <pre>
                                         █████            
