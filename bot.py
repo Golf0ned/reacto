@@ -18,5 +18,8 @@ async def react(ctx, message):
     modal = ReactionModal(message)
     await ctx.send_modal(modal)
 
+@bot.message_command(name="Tomato")
+async def react(ctx, message):
+    await message.add_reaction(":tomato:")
 
 bot.run(TOKEN)
